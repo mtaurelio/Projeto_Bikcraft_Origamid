@@ -1,5 +1,5 @@
+// Ativar Links do Menu
 const links = document.querySelectorAll(".header-menu a");
-// selecionou o html através da class mencionada
 
 function ativarLink(link) {
   const url = location.href;
@@ -8,11 +8,10 @@ function ativarLink(link) {
     link.classList.add("ativo");
   }
 }
-// função que irá ser executada.
 
 links.forEach(ativarLink);
-// fez com que a função passase para todos os links da class.
-// codigo que matém a barrinha na subpagina selecionada. 01-13
+
+// Ativar Items do Orçamento
 
 const parametros = new URLSearchParams(location.search);
 
@@ -24,14 +23,18 @@ function ativarProduto(parametro) {
 }
 
 parametros.forEach(ativarProduto);
-// codigo que transfere uma seleção para outra pagina, através de uma URL 16-25
-//Perguntas Frequentes
+
+// Perguntas Frequentes
 const perguntas = document.querySelectorAll(".perguntas button");
 
 function ativarPergunta(event) {
   const pergunta = event.currentTarget;
   const controls = pergunta.getAttribute("aria-controls");
-  console.log(controls);
+  const resposta = document.getElementById(controls);
+
+  resposta.classList.toggle("ativa");
+  const ativa = resposta.classList.contains("ativa");
+  pergunta.setAttribute("aria-expanded", ativa);
 }
 
 function eventosPerguntas(pergunta) {
@@ -39,4 +42,26 @@ function eventosPerguntas(pergunta) {
 }
 
 perguntas.forEach(eventosPerguntas);
-console.log(perguntas);
+
+// Galeria de Bicicletas
+const galeria = document.querySelectorAll(".bicicleta-imagens img");
+const galeriaContainer = document.querySelector(".bicicleta-imagens");
+
+function trocarImagem(event) {
+  const img = event.currentTarget;
+  const media = matchMedia("(min-width: 1000px)").matches;
+  if (media) {
+    galeriaContainer.prepend(img);
+  }
+}
+
+function eventosGaleria(img) {
+  img.addEventListener("click", trocarImagem);
+}
+
+galeria.forEach(eventosGaleria);
+
+// Animação
+if (window.SimpleAnime) {
+  new SimpleAnime();
+}
