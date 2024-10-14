@@ -1,15 +1,16 @@
 // Ativar Links do Menu
 const links = document.querySelectorAll(".header-menu a");
+// Aqui, todos os links (<a>) dentro de um elemento com a classe "header-menu" são selecionados e guardados na constante links. O querySelectorAll retorna uma lista com todos esses links.
 
 function ativarLink(link) {
-  const url = location.href;
-  const href = link.href;
+  const url = location.href; // Pega a URL atual da página (ou seja, o endereço completo da página).
+  const href = link.href; // Pega o endereço do link que está sendo processado.
   if (url.includes(href)) {
-    link.classList.add("ativo");
+    // Verifica se a URL atual da página contém o endereço do link. Se sim, então:
+    link.classList.add("ativo"); // Adicionando a class "ativo"
   }
 }
-
-links.forEach(ativarLink);
+links.forEach(ativarLink); //Esse comando usa o forEach para passar por cada link da lista links, chamando a função ativarLink para cada um deles.
 
 // Ativar Items do Orçamento
 
